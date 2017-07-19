@@ -5,7 +5,7 @@ const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
     entry: {
-        app: './src/main.js',
+        app: './src/app.js',
         bundle: [
             'react', 'react-dom'
         ]
@@ -38,9 +38,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'index.html'),
         })
-    // new OpenBrowserPlugin({
-    //     url: 'http://localhost:3000'
-    // })
+        // new OpenBrowserPlugin({
+        //     url: 'http://localhost:3000'
+        // })
     ],
     devServer: {
         inline: true,
