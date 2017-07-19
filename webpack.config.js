@@ -5,14 +5,14 @@ const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
     entry: {
-        app: './source/app.js',
+        app: './src/main.js',
         bundle: [
             'react', 'react-dom'
         ]
     },
     output: {
         filename: '[name].js',
-        path: path.join(__dirname, 'build'),
+        path: path.join(__dirname, 'dist'),
         chunkFilename: '[name].js'
     },
     resolve: {
@@ -37,15 +37,24 @@ module.exports = {
         // new webpack.optimize.UglifyJsPlugin({minimize: true}),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'index.html'),
-        }),
-        new OpenBrowserPlugin({
-            url: 'http://localhost:3000'
         })
+    // new OpenBrowserPlugin({
+    //     url: 'http://localhost:3000'
+    // })
     ],
     devServer: {
-        contentBase: './',
+        inline: true,
+        contentBase: "./", //content not from webpack is serverd
+        port: '8088',
         historyApiFallback: true,
         hot: true,
-        host: '0.0.0.0'
+        //配置服务器
+        proxy: {
+            '/api/': {
+                target: 'http://m.maizuo.com',
+                host: 'm.maizuo.com',
+                changeOrigin: true
+            }
+        }
     }
 };

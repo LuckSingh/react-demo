@@ -7,6 +7,7 @@ export default class TodoItems extends React.Component {
     };
 
     constructor(props) {
+        console.log(props);
         super(props);
     }
 
