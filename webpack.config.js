@@ -5,10 +5,7 @@ const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
     entry: {
-        app: './src/app.js',
-        bundle: [
-            'react', 'react-dom'
-        ]
+        app: './src/app.js'
     },
     output: {
         filename: '[name].js',
