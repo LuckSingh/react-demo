@@ -1,13 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import '../Less/style'
 
-export default class Coupons extends React.Component {
+export default class Coupon extends React.Component {
 
     constructor(props) {
         super(props);
     }
 
     render() {
-        return <div>Coupon</div>;
+        return <div className='container'>Coupon</div>;
     }
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import Cancell from '../Cancell/Cancell'
-import Coupon from '../Coupon/Coupon'
-import Layout from '../Common/Layout'
+import Cancell from '../../Cancell/Script/Cancell'
+import Coupon from '../../Coupon/Script/Coupon'
+import Layout from '../../Common/Script/Layout'
 const Routes = () => (
     <Router>
     <div>

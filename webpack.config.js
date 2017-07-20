@@ -16,7 +16,7 @@ module.exports = {
         chunkFilename: '[name].js'
     },
     resolve: {
-        extensions: ['.js', '.json']
+        extensions: ['.js', '.json', '.less']
     },
     module: {
         rules: [{
@@ -31,6 +31,19 @@ module.exports = {
                     plugins: ['transform-runtime']
                 }
             }]
+        }, {
+            test: /\.css$/,
+            use: [
+                'style-loader',
+                'css-loader'
+            ]
+        }, {
+            test: /\.less$/,
+            use: [
+                'style-loader',
+                'css-loader',
+                'less-loader'
+            ]
         }]
     },
     plugins: [
@@ -38,9 +51,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'index.html'),
         })
-        // new OpenBrowserPlugin({
-        //     url: 'http://localhost:3000'
-        // })
+    // new OpenBrowserPlugin({
+    //     url: 'http://localhost:3000'
+    // })
     ],
     devServer: {
         inline: true,
