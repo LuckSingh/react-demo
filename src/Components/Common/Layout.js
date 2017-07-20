@@ -10,9 +10,8 @@ export default class Layout extends React.Component {
 
     render() {
         return <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/cancellation">cancellation</Link></li>
-        <li><Link to="/coupons">coupons</Link></li>
+        <li><Link to="/">coupon</Link></li>
+        <li><Link to="/cancell">cancell</Link></li>
       </ul>;
     }
 }
