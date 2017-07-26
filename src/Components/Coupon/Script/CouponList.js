@@ -1,38 +1,49 @@
 import React from 'react';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
-
+import Options from '../../Common/Script/Options'
 
 const products = [];
-
+//模拟假的数据
 function addProducts(quantity) {
     const startId = products.length;
     for (let i = 0; i < quantity; i++) {
         const id = startId + i;
         products.push({
             id: id,
-            type: 'aaa',
             name: 'Item name ' + id,
-            price: 2100 + i,
-            validDate: '312312',
-            stock: '1111',
-            operation: ''
+            price: 2100 + i
         });
     }
 }
 
-addProducts(5);
+addProducts(3);
 
-export default class CouponList extends React.Component {
+//操作组件 编辑删除
+function actionFormatter(cell, row) {
+    return <Options />;
+}
+//添加
+function onAfterInsertRow(row) {
+    console.log(row);
+    let newRowStr = '';
+
+    for (const prop in row) {
+        newRowStr += prop + ': ' + row[prop] + ' \n';
+    }
+    alert('The new row is:\n ' + newRowStr);
+}
+
+const options = {
+    afterInsertRow: onAfterInsertRow // A hook for after insert rows
+};
+export default class FullyCustomDeleteButtonTable extends React.Component {
     render() {
         return (
-            <BootstrapTable data={ products }>
-          <TableHeaderColumn dataField='id' isKey={ true }>Product ID</TableHeaderColumn>
-          <TableHeaderColumn dataField='type'>卡券类型</TableHeaderColumn>
-          <TableHeaderColumn dataField='name'>卡券名称</TableHeaderColumn>
-          <TableHeaderColumn dataField='price'>卡券金额</TableHeaderColumn>
-          <TableHeaderColumn dataField='validDate'>卡券有效期</TableHeaderColumn>
-          <TableHeaderColumn dataField='stock'>库存</TableHeaderColumn>
-          <TableHeaderColumn dataField='operation'>操作</TableHeaderColumn>
+            <BootstrapTable data={ products } insertRow={ true } options={ options }>
+          <TableHeaderColumn dataField='id' isKey hidden export>Product ID</TableHeaderColumn>
+          <TableHeaderColumn dataField='name'>Product Name</TableHeaderColumn>
+          <TableHeaderColumn dataField='price'>Product Price</TableHeaderColumn>
+          <TableHeaderColumn dataField='action' dataFormat={ actionFormatter } export={ false }>Action</TableHeaderColumn>
       </BootstrapTable>
         );
     }
